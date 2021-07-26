@@ -19,7 +19,7 @@ int	ft_atoi(const char *s, int *err)
 	{
 		nb = nb * 10 + *s - 48;
 		s++;
-		if ((nb > 2147483648 && sign == -1) || (nb > INT32_MAX && sign == 1))
+		if ((nb > 2147483648 && sign == -1) || (nb > 2147483647 && sign == 1))
 			*err = 1;
 	}
 	if (*s && (*s < '0' || *s > '9'))
@@ -51,19 +51,85 @@ void	check_error(t_stack **a, int err)
 	}
 }
 
-void	index(t_stack **a)
+int find_max(t_stack *a, long last_max)
+{
+	int max;
+
+	max = -2147483648;
+	while (a)
+	{
+		if (a->nb >= max && a->nb < last_max)
+			max = a->nb;
+		a = a->next;
+	}
+	return (max);
+}
+
+int count_of_list(t_stack *a)
+{
+	int		count;
+	t_stack *temp;
+
+	temp = a;
+	count = 0;
+	while (temp)
+	{
+		temp = temp->next;
+		count++;
+	}
+	return(count);
+}
+
+void	markup_index(t_stack **a)
 {
 	t_stack	*temp;
 	int		i;
 	int		check;
 	int		max;
 
-	i = 1;
-	max = find_max(*a, 2147483647);
-	temp = (*a);
+	i = count_of_list(*a);
+	max = find_max(*a, 2147483648);
+	while (i > 0)
+	{
+		i--;
+		temp = (*a);
+		while (temp->nb != max)
+			temp = temp->next;
+		temp->index = i;
+		max = find_max(*a, max);
+	}
+}
+
+void fill_stay_in(t_stack **a)
+{
+	t_stack *temp;
+
+	temp = *a;
+	while(temp)
+	{
+		temp->stay_in = 0;
+		temp = temp->next;
+	}
+}
+
+void print_stacks(t_stack **a, t_stack **b)
+{
+	t_stack *temp;
+
+	temp = *a;
+	printf("STACK A:\n");
+	while(temp)
+	{
+		printf("ind = %d, num = %d\n", temp->index, temp->nb);
+		// printf("ind = %d, stay_in = %d, num = %d\n", temp->index, temp->stay_in, temp->nb);
+		temp = temp->next;
+	}
+	temp = *b;
+	printf("STACK B:\n");
 	while (temp)
 	{
-		if () 
+		printf("ind = %d, num = %d\n", temp->index, temp->nb);
+		temp = temp->next;
 	}
 }
 
@@ -71,7 +137,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	**a;
 	t_stack	**b;
-	t_stack	*temp;
+	// t_stack	*temp;
 	int err_flag;
 
 	err_flag = 0;
@@ -83,16 +149,10 @@ int	main(int argc, char **argv)
 		push_front(ft_atoi(argv[argc], &err_flag), a);/* dont forget to change atoi to ft_atoi!!!*/
 	}
 	check_error(a, err_flag);
-	index(a);
-	// sorting_3(a, b);
+	markup_index(a);
+	fill_stay_in(a);
+	// sorting3(a, b);
+	compare_markup(a, b);
+	print_stacks(a, b);
 	free_stacks(a, b);
 }
-
-	// int i;
-	// for (i = 0; i < 10; i++)
-	// {
-	// 	rra(a);
-	// 	temp = *a;
-	// 	temp = last_elem(a);
-	// 	printf("last = %d\n", temp->nb);
-	// }

@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	reverse(t_stack **stack)
+void	ft_reverse(t_stack **stack)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -30,19 +30,19 @@ void	reverse(t_stack **stack)
 
 void	rra(t_stack **a)
 {
-	reverse(a);
+	ft_reverse(a);
 	write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack **b)
 {
-	reverse(b);
+	ft_reverse(b);
 	write(1, "rrb\n", 4);
 }
 
 void	rrr(t_stack **a, t_stack **b)
 {
-	reverse(a);
-	reverse(b);
+	ft_reverse(a);
+	ft_reverse(b);
 	write(1, "rrr\n", 4);
 }
