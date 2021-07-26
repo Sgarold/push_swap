@@ -378,9 +378,9 @@ void	compare_markup(t_stack **a, t_stack **b)
 	gt_mode->size = 0;
 	ni_mode->size = 0;
 	greater_than_mode(*a, gt_mode);
-	printf("gt c = %d, h = %d\n", gt_mode->size, gt_mode->markup_head);
+	// printf("gt c = %d, h = %d\n", gt_mode->size, gt_mode->markup_head);
 	next_index_mode(*a, ni_mode);
-	printf("ni c = %d, h = %d\n", ni_mode->size, ni_mode->markup_head);
+	// printf("ni c = %d, h = %d\n", ni_mode->size, ni_mode->markup_head);
 	if (ni_mode->size == count_of_list(*a) - 1)
 	{
 		filling_moves(a);

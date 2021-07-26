@@ -153,6 +153,6 @@ int	main(int argc, char **argv)
 	fill_stay_in(a);
 	// sorting3(a, b);
 	compare_markup(a, b);
-	print_stacks(a, b);
+	// print_stacks(a, b);
 	free_stacks(a, b);
 }
