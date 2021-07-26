@@ -44,10 +44,15 @@ void	rrb(t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
 t_stack	**stack_init(t_stack **stack);
 void	free_stacks(t_stack **a, t_stack **b);
-void	sorting3(t_stack **a, t_stack **b);
+void	sorting_5(t_stack **a, t_stack **b);
 void	compare_markup(t_stack **a, t_stack **b);
 int 	count_of_list(t_stack *a);
 void fill_stay_in(t_stack **a);
 void print_stacks(t_stack **a, t_stack **b);
+void	filling_moves(t_stack **stack);
+int	sum_moves(t_stack **a, t_stack **b);
+void	moving(t_stack **a, t_stack **b, int min_mvs);
+void spin(t_stack **a);
+void	one_sort_iter(t_stack **a, t_stack **b);
 
 #endif

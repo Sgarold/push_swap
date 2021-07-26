@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	greater_than_mode(t_stack *a, t_markups *mode)
+void	greater_than_mode(t_stack *a, t_markups *mode) // more than 25 lines
 {
 	int head;
 	t_stack *temp;
@@ -40,7 +40,7 @@ void	greater_than_mode(t_stack *a, t_markups *mode)
 	}
 }
 
-void	next_index_mode(t_stack *a, t_markups *mode)
+void	next_index_mode(t_stack *a, t_markups *mode) // more than 25 lines
 {
 	int head;
 	t_stack *temp;
@@ -87,16 +87,7 @@ void	init_modes(t_markups **gt_mode, t_markups **ni_mode)
 	(*ni_mode)->size = 0;
 }
 
-// void	filling_gt(t_stack **a, t_stack **b, t_markups *mode)
-// {
-// 	t_stack *temp;
-// 	int	prev_index;
-// 	int
-
-// 	temp = *a;
-// }
-
-void	filling_gt(t_stack **a, t_markups *mode)
+void	filling_gt(t_stack **a, t_markups *mode) // more than 25 lines
 {
 	t_stack *temp;
 	int prev_index;
@@ -185,7 +176,7 @@ int	find_nearest_index(t_stack **a, int index)
 		if (temp->index < next_index && temp->index > index)
 			next_index = temp->index;
 		if (temp->index < min_index)
-			min_index = next_index;
+			min_index = temp->index;
 		temp = temp->next;
 	}
 	if (next_index == 2147483647)
@@ -204,7 +195,6 @@ void	moves_of_nearest(t_stack **a, int index, t_moves **mvs)
 	nearest_index = find_nearest_index(a, index);
 	while (temp->index != nearest_index)
 		temp = temp->next;
-	// printf("!\n");
 	moves->lift_step = temp->lift_step;
 	moves->moves = temp->moves;
 }
@@ -239,11 +229,11 @@ int	sum_moves(t_stack **a, t_stack **b)
 			min_mvs = temp->sum_moves;
 		temp = temp->next;
 	}
-	free(mvs); // a nado li?
+	free(mvs);
 	return(min_mvs);
 }
 
-void	moving(t_stack **a, t_stack **b, int min_mvs)
+void	moving(t_stack **a, t_stack **b, int min_mvs) // more than 25 lines
 {
 	t_stack *a_t;
 	t_stack *b_t;
@@ -299,6 +289,7 @@ void spin(t_stack **a)
 	int moves;
 	int step;
 
+	filling_moves(a);
 	temp = *a;
 	while (temp->index)
 		temp = temp->next;
@@ -315,26 +306,16 @@ void spin(t_stack **a)
 
 void	sorting(t_stack **a, t_stack **b)
 {
-	int	min_mvs;
 	int i;
-	int j;
 
 	pushing(a, b);
 	i = count_of_list(*b);
-	j = count_of_list(*b);
 	while (i--)
-	{
-		filling_moves(a);
-		filling_moves(b);
-		min_mvs = sum_moves(a, b);
-		moving(a, b, min_mvs);
-		pa(a, b);
-	}
-	filling_moves(a);
+		one_sort_iter(a, b);
 	spin(a);
 }
 
-void	filling_ni(t_stack **a, t_markups *mode)
+void	filling_ni(t_stack **a, t_markups *mode) // more than 25
 {
 	t_stack *temp;
 	int		prev_index;
@@ -364,35 +345,28 @@ void	filling_ni(t_stack **a, t_markups *mode)
 	}
 }
 
-
 void	compare_markup(t_stack **a, t_stack **b)
 {
 	t_markups *gt_mode;
 	t_markups *ni_mode;
 
-	// init_modes(gt_mode, ni_mode);	// !!!!!!!! fix it
-	gt_mode = malloc(sizeof(t_markups));
-	ni_mode = malloc(sizeof(t_markups));
-	if (!gt_mode || !ni_mode)
-		exit(7);
-	gt_mode->size = 0;
-	ni_mode->size = 0;
+	init_modes(&gt_mode, &ni_mode);
 	greater_than_mode(*a, gt_mode);
-	// printf("gt c = %d, h = %d\n", gt_mode->size, gt_mode->markup_head);
 	next_index_mode(*a, ni_mode);
-	// printf("ni c = %d, h = %d\n", ni_mode->size, ni_mode->markup_head);
 	if (ni_mode->size == count_of_list(*a) - 1)
-	{
-		filling_moves(a);
 		spin(a);
-	}
 	else
 	{
-		if (ni_mode->size <= gt_mode->size)
-			filling_gt(a, gt_mode);
+		if (count_of_list(*a) <= 5)
+			sorting_5(a, b);
 		else
-			filling_ni(a, ni_mode);
-		sorting(a, b);
+		{
+			if (ni_mode->size <= gt_mode->size)
+				filling_gt(a, gt_mode);
+			else
+				filling_ni(a, ni_mode);
+			sorting(a, b);
+		}
 	}
 	free(gt_mode);
 	free(ni_mode);

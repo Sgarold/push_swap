@@ -29,8 +29,8 @@ int	ft_atoi(const char *s, int *err)
 
 void	check_error(t_stack **a, int err)
 {
-	t_stack *now;
-	t_stack *any;
+	t_stack	*now;
+	t_stack	*any;
 
 	now = *a;
 	while (now)
@@ -51,9 +51,9 @@ void	check_error(t_stack **a, int err)
 	}
 }
 
-int find_max(t_stack *a, long last_max)
+int	find_max(t_stack *a, long last_max)
 {
-	int max;
+	int	max;
 
 	max = -2147483648;
 	while (a)
@@ -68,7 +68,7 @@ int find_max(t_stack *a, long last_max)
 int count_of_list(t_stack *a)
 {
 	int		count;
-	t_stack *temp;
+	t_stack	*temp;
 
 	temp = a;
 	count = 0;
@@ -102,7 +102,7 @@ void	markup_index(t_stack **a)
 
 void fill_stay_in(t_stack **a)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	temp = *a;
 	while(temp)
@@ -112,46 +112,44 @@ void fill_stay_in(t_stack **a)
 	}
 }
 
-void print_stacks(t_stack **a, t_stack **b)
-{
-	t_stack *temp;
+// void print_stacks(t_stack **a, t_stack **b)
+// {
+// 	t_stack *temp;
 
-	temp = *a;
-	printf("STACK A:\n");
-	while(temp)
-	{
-		printf("ind = %d, num = %d\n", temp->index, temp->nb);
-		// printf("ind = %d, stay_in = %d, num = %d\n", temp->index, temp->stay_in, temp->nb);
-		temp = temp->next;
-	}
-	temp = *b;
-	printf("STACK B:\n");
-	while (temp)
-	{
-		printf("ind = %d, num = %d\n", temp->index, temp->nb);
-		temp = temp->next;
-	}
-}
+// 	temp = *a;
+// 	printf("STACK A:\n");
+// 	while(temp)
+// 	{
+// 		printf("ind = %d, num = %d\n", temp->index, temp->nb);
+// 		temp = temp->next;
+// 	}
+// 	temp = *b;
+// 	printf("STACK B:\n");
+// 	while (temp)
+// 	{
+// 		printf("ind = %d, num = %d\n", temp->index, temp->nb);
+// 		temp = temp->next;
+// 	}
+// }
 
 int	main(int argc, char **argv)
 {
 	t_stack	**a;
 	t_stack	**b;
-	// t_stack	*temp;
-	int err_flag;
+	int		err_flag;
 
-	err_flag = 0;
 	a = stack_init(a);
 	b = stack_init(b);
+	if (argc == 1)
+		err_flag = 1;
 	while (argc > 1)
 	{
 		argc--;
-		push_front(ft_atoi(argv[argc], &err_flag), a);/* dont forget to change atoi to ft_atoi!!!*/
+		push_front(ft_atoi(argv[argc], &err_flag), a);
 	}
 	check_error(a, err_flag);
 	markup_index(a);
 	fill_stay_in(a);
-	// sorting3(a, b);
 	compare_markup(a, b);
 	// print_stacks(a, b);
 	free_stacks(a, b);
