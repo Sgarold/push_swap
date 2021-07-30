@@ -30,10 +30,10 @@ void	sorting_3(t_stack **a, t_stack **b)
 
 void	filling_moves(t_stack **stack)
 {
-	t_stack *temp;
-	int moves_up;
-	int moves_down;
-	int half_count_list;
+	t_stack	*temp;
+	int		moves_up;
+	int		moves_down;
+	int		half_count_list;
 
 	temp = *stack;
 	moves_up = 0;

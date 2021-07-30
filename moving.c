@@ -2,9 +2,9 @@
 
 int	find_nearest_index(t_stack **a, int index)
 {
-	t_stack *temp;
-	int min_index;
-	int next_index;
+	t_stack	*temp;
+	int		min_index;
+	int		next_index;
 
 	temp = *a;
 	min_index = 2147483647;
@@ -67,9 +67,9 @@ void	not_equal_moves(t_stack **a, t_stack **b, t_stack *a_t, t_stack *b_t)
 
 void	moving(t_stack **a, t_stack **b, int min_mvs)
 {
-	t_stack *a_t;
-	t_stack *b_t;
-	int next_index;
+	t_stack	*a_t;
+	t_stack	*b_t;
+	int		next_index;
 
 	a_t = *a;
 	b_t = *b;
@@ -82,11 +82,11 @@ void	moving(t_stack **a, t_stack **b, int min_mvs)
 	not_equal_moves(a, b, a_t, b_t);
 }
 
-void spin(t_stack **a)
+void	spin(t_stack **a)
 {
-	t_stack *temp;
-	int moves;
-	int step;
+	t_stack	*temp;
+	int		moves;
+	int		step;
 
 	filling_moves(a);
 	temp = *a;

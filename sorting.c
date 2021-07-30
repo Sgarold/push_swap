@@ -1,12 +1,12 @@
 #include "push_swap.h"
 
-t_stack *next_elem(t_stack *temp, t_stack *a)
+t_stack	*next_elem(t_stack *temp, t_stack *a)
 {
 	if (temp->next)
 		temp = temp->next;
 	else
 		temp = a;
-	return(temp);
+	return (temp);
 }
 
 void	search_max_count(int count, t_markups *mode, int head)
@@ -30,8 +30,8 @@ void	init_modes(t_markups **gt_mode, t_markups **ni_mode)
 
 void	pushing(t_stack **a, t_stack **b)
 {
-	t_stack *temp;
-	int i;
+	t_stack	*temp;
+	int		i;
 
 	temp = *a;
 	i = count_of_list(*a);
@@ -47,7 +47,7 @@ void	pushing(t_stack **a, t_stack **b)
 
 void	sorting(t_stack **a, t_stack **b)
 {
-	int i;
+	int	i;
 
 	pushing(a, b);
 	i = count_of_list(*b);

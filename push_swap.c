@@ -65,7 +65,7 @@ int	find_max(t_stack *a, long last_max)
 	return (max);
 }
 
-int count_of_list(t_stack *a)
+int	count_of_list(t_stack *a)
 {
 	int		count;
 	t_stack	*temp;
@@ -77,7 +77,7 @@ int count_of_list(t_stack *a)
 		temp = temp->next;
 		count++;
 	}
-	return(count);
+	return (count);
 }
 
 void	markup_index(t_stack **a)
@@ -100,12 +100,12 @@ void	markup_index(t_stack **a)
 	}
 }
 
-void fill_stay_in(t_stack **a)
+void	fill_stay_in(t_stack **a)
 {
 	t_stack	*temp;
 
 	temp = *a;
-	while(temp)
+	while (temp)
 	{
 		temp->stay_in = 0;
 		temp = temp->next;
@@ -142,6 +142,8 @@ int	main(int argc, char **argv)
 	b = stack_init(b);
 	if (argc == 1)
 		err_flag = 1;
+	if (argc == 2)
+		splitter()
 	while (argc > 1)
 	{
 		argc--;
@@ -151,5 +153,6 @@ int	main(int argc, char **argv)
 	markup_index(a);
 	fill_stay_in(a);
 	compare_markup(a, b);
+	// print_stacks(a, b);
 	free_stacks(a, b);
 }

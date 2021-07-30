@@ -2,10 +2,10 @@
 
 void	greater_than_mode(t_stack *a, t_markups *mode)
 {
-	int head;
-	t_stack *temp;
-	int count;
-	int prev_index;
+	int		head;
+	t_stack	*temp;
+	int		count;
+	int		prev_index;
 
 	head = count_of_list(a);
 	while (head--)
@@ -31,10 +31,10 @@ void	greater_than_mode(t_stack *a, t_markups *mode)
 
 void	next_index_mode(t_stack *a, t_markups *mode)
 {
-	int head;
-	t_stack *temp;
-	int count;
-	int prev_index;
+	int		head;
+	t_stack	*temp;
+	int		count;
+	int		prev_index;
 
 	head = count_of_list(a);
 	while (head--)
@@ -60,8 +60,8 @@ void	next_index_mode(t_stack *a, t_markups *mode)
 
 void	filling_gt(t_stack **a, t_markups *mode)
 {
-	t_stack *temp;
-	int prev_index;
+	t_stack	*temp;
+	int		prev_index;
 
 	temp = *a;
 	while (temp->index != mode->markup_head)
@@ -69,7 +69,7 @@ void	filling_gt(t_stack **a, t_markups *mode)
 	temp->stay_in = 1;
 	prev_index = temp->index;
 	temp = next_elem(temp, *a);
-	while(temp->index != mode->markup_head)
+	while (temp->index != mode->markup_head)
 	{
 		if (temp->index > prev_index)
 		{
@@ -84,7 +84,7 @@ void	filling_gt(t_stack **a, t_markups *mode)
 
 void	filling_ni(t_stack **a, t_markups *mode)
 {
-	t_stack *temp;
+	t_stack	*temp;
 	int		prev_index;
 
 	temp = *a;
@@ -108,8 +108,8 @@ void	filling_ni(t_stack **a, t_markups *mode)
 
 void	compare_markup(t_stack **a, t_stack **b)
 {
-	t_markups *gt_mode;
-	t_markups *ni_mode;
+	t_markups	*gt_mode;
+	t_markups	*ni_mode;
 
 	init_modes(&gt_mode, &ni_mode);
 	greater_than_mode(*a, gt_mode);

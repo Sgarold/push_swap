@@ -17,7 +17,7 @@ void	moves_of_nearest(t_stack **a, int index, t_moves **mvs)
 
 int	eq_mvs(int mvs_a, int mvs_b)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (mvs_a-- && mvs_b--)
@@ -27,26 +27,26 @@ int	eq_mvs(int mvs_a, int mvs_b)
 
 int	sum_moves(t_stack **a, t_stack **b)
 {
-	t_stack *temp;
-	t_moves *mvs;
-	int min_mvs;
+	t_stack	*t;
+	t_moves	*mvs;
+	int		min_mvs;
 
-	temp = *b;
+	t = *b;
 	mvs = malloc(sizeof(t_moves));
 	if (!mvs)
 		exit(7);
 	min_mvs = 2147483647;
-	while (temp)
+	while (t)
 	{
-		moves_of_nearest(a, temp->index, &mvs);
-		if (mvs->lift_step == temp->lift_step)
-			temp->sum_moves = temp->moves + mvs->moves - eq_mvs(mvs->moves, temp->moves);
+		moves_of_nearest(a, t->index, &mvs);
+		if (mvs->lift_step == t->lift_step)
+			t->sum_moves = t->moves + mvs->moves - eq_mvs(mvs->moves, t->moves);
 		else
-			temp->sum_moves = temp->moves + mvs->moves;
-		if (temp->sum_moves < min_mvs)
-			min_mvs = temp->sum_moves;
-		temp = temp->next;
+			t->sum_moves = t->moves + mvs->moves;
+		if (t->sum_moves < min_mvs)
+			min_mvs = t->sum_moves;
+		t = t->next;
 	}
 	free(mvs);
-	return(min_mvs);
+	return (min_mvs);
 }
