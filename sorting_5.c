@@ -28,9 +28,36 @@ void	sorting_3(t_stack **a, t_stack **b)
 	}
 }
 
+void	filling_moves(t_stack **stack)
+{
+	t_stack *temp;
+	int moves_up;
+	int moves_down;
+	int half_count_list;
+
+	temp = *stack;
+	moves_up = 0;
+	moves_down = count_of_list(*stack);
+	half_count_list = moves_down / 2;
+	while (moves_up <= half_count_list)
+	{
+		temp->moves = moves_up;
+		temp->lift_step = 1;
+		moves_up++;
+		temp = temp->next;
+	}
+	moves_down -= moves_up;
+	while (temp)
+	{
+		temp->moves = moves_down;
+		temp->lift_step = -1;
+		moves_down--;
+		temp = temp->next;
+	}
+}
+
 void	one_sort_iter(t_stack **a, t_stack **b)
 {
-	sorting_3(a, b);
 	filling_moves(a);
 	filling_moves(b);
 	moving(a, b, sum_moves(a, b));

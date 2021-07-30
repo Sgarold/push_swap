@@ -151,6 +151,5 @@ int	main(int argc, char **argv)
 	markup_index(a);
 	fill_stay_in(a);
 	compare_markup(a, b);
-	// print_stacks(a, b);
 	free_stacks(a, b);
 }
