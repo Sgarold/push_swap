@@ -142,8 +142,6 @@ int	main(int argc, char **argv)
 	b = stack_init(b);
 	if (argc == 1)
 		err_flag = 1;
-	if (argc == 2)
-		splitter()
 	while (argc > 1)
 	{
 		argc--;
