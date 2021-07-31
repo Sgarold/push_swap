@@ -112,6 +112,13 @@ void	fill_stay_in(t_stack **a)
 	}
 }
 
+void	arg_parser(char *arg, int *err_flag, t_stack **a)
+{
+	char *word;
+
+	push_front(ft_atoi(word, err_flag), a);
+}
+
 // void print_stacks(t_stack **a, t_stack **b)
 // {
 // 	t_stack *temp;
@@ -145,7 +152,7 @@ int	main(int argc, char **argv)
 	while (argc > 1)
 	{
 		argc--;
-		push_front(ft_atoi(argv[argc], &err_flag), a);
+		arg_parser(argv[argc], &err_flag, a);
 	}
 	check_error(a, err_flag);
 	markup_index(a);
