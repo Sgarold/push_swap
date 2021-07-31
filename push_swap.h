@@ -48,7 +48,6 @@ void	sorting_5(t_stack **a, t_stack **b);
 void	compare_markup(t_stack **a, t_stack **b);
 int		count_of_list(t_stack *a);
 void	fill_stay_in(t_stack **a);
-void	print_stacks(t_stack **a, t_stack **b);
 void	filling_moves(t_stack **stack);
 int		sum_moves(t_stack **a, t_stack **b);
 void	moving(t_stack **a, t_stack **b, int min_mvs);
@@ -62,5 +61,7 @@ t_stack	*next_elem(t_stack *temp, t_stack *a);
 void	search_max_count(int count, t_markups *mode, int head);
 void	init_modes(t_markups **gt_mode, t_markups **ni_mode);
 void	sorting(t_stack **a, t_stack **b);
+void	check_error(t_stack **a, int err);
+void	arg_parser(char *arg, int *err_flag, t_stack **a);
 
 #endif

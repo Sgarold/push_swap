@@ -8,11 +8,28 @@ SRC =	push_swap.c\
 		moving.c\
 		sorting_5.c\
 		sorting.c\
-		stack_utils.c
+		stack_utils.c\
+		arg_parser.c
 
-OBJ = $(SRC:.c=.o)
-
+LIB = 	libft/libft.a
+FLAGS =	-Wall -Wextra -Werror
 NAME = push_swap
 
-all:
-	gcc $(SRC) -o $(NAME)
+all: $(NAME)
+
+$(NAME): lib $(SRC)
+	gcc $(FLAGS) -o $(NAME) $(SRC) $(LIB)
+
+lib:
+	@make -C libft/
+
+clean:
+	@make -C libft/ clean
+
+fclean: clean
+	rm -rf $(NAME)
+	@make -C libft/ fclean
+
+re: fclean all
+
+.PHONY: all clean fclean re lib

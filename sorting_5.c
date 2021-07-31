@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sorting_3(t_stack **a, t_stack **b)
+void	sorting_3(t_stack **a)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -72,11 +72,11 @@ void	sorting_5(t_stack **a, t_stack **b)
 	if (count == 2 && (*a)->index)
 		sa(a);
 	else if (count == 3)
-		sorting_3(a, b);
+		sorting_3(a);
 	else if (count == 4)
 	{
 		pb(a, b);
-		sorting_3(a, b);
+		sorting_3(a);
 		one_sort_iter(a, b);
 		spin(a);
 	}
@@ -84,7 +84,7 @@ void	sorting_5(t_stack **a, t_stack **b)
 	{
 		pb(a, b);
 		pb(a, b);
-		sorting_3(a, b);
+		sorting_3(a);
 		one_sort_iter(a, b);
 		one_sort_iter(a, b);
 		spin(a);
