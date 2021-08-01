@@ -11,20 +11,25 @@ SRC =	push_swap.c\
 		stack_utils.c\
 		arg_parser.c
 
-LIB = 	libft/libft.a
+OBJ = $(SRC:.c=.o)
+LIB = libft/libft.a
 FLAGS =	-Wall -Wextra -Werror
 NAME = push_swap
 
-all: $(NAME)
+all: lib $(NAME)
 
-$(NAME): lib $(SRC)
-	gcc $(FLAGS) -o $(NAME) $(SRC) $(LIB)
+$(NAME): $(OBJ)
+	gcc $(FLAGS) $(SRC) $(LIB) -o $(NAME)
+
+%.o: %.c
+	gcc $(FLAGS) -o $@ -c $<
 
 lib:
 	@make -C libft/
 
 clean:
 	@make -C libft/ clean
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
