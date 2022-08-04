@@ -74,13 +74,11 @@ char	**ft_write_arr(int value_str, char const *s, char c, char **arr)
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
-	int		i;
 	int		value_str;
 
 	if (!s)
 		return (NULL);
 	value_str = ft_value_of_strings(s, c);
-	i = 0;
 	arr = (char **)malloc(sizeof(char *) * (value_str + 1));
 	if (!arr)
 		return (NULL);
